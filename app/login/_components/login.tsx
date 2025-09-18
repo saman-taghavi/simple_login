@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 import { PHONE_SCHEMA } from '@/schemas/phonNumber'
 import { USER_ATOM } from '@/shared/atoms/user'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAtomValue, useSetAtom } from 'jotai/react'
+import { useSetAtom } from 'jotai/react'
 import { useRouter } from 'next/navigation'
 import type { ComponentPropsWithoutRef } from 'react'
 import { useForm } from 'react-hook-form'
@@ -67,7 +67,12 @@ export const Login = ({ className, ...props }: ComponentPropsWithoutRef<'div'>) 
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">
+                <Button
+                  loading={isPending}
+                  loadingText="logging in..."
+                  type="submit"
+                  variant={isError ? 'destructive' : 'default'}
+                  effect="gooeyRight">
                   Login
                 </Button>
               </div>

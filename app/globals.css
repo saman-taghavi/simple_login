@@ -3,6 +3,48 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --animate-shine: shine 3s ease-out infinite;
+  --animate-gradient-flow: gradientFlow 10s ease infinite;
+  --animate-spinner-leaf-fade: spinner-leaf-fade 800ms linear infinite;
+
+  @keyframes shine {
+    0% {
+      background-position: 200% 0;
+    }
+    25% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes spinner-leaf-fade {
+    0% {
+      opacity: '0';
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: '0';
+    }
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

@@ -10,7 +10,7 @@ export const AuthCheck = ({ children }: PropsWithChildren) => {
   const user = useAtomValue(USER_ATOM)
   const router = useRouter()
   useIsomorphicLayoutEffect(() => {
-    if (!user.name) {
+    if (!user.email) {
       router.replace('/login')
     }
   }, [router, user.name])
