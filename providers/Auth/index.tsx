@@ -1,18 +1,14 @@
-'use client'
-
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { USER_ATOM } from '@/shared/atoms/user'
-import { useAtomValue } from 'jotai/react'
-import { useRouter } from 'next/navigation'
-import type { PropsWithChildren } from 'react'
+import { USER_ATOM_KEY } from '@/shared/atoms/user'
+import { cookies, headers } from 'next/headers'
+import { redirect } from 'next/navigation'
+import { use, type PropsWithChildren } from 'react'
 
 export const AuthCheck = ({ children }: PropsWithChildren) => {
-  const user = useAtomValue(USER_ATOM)
-  const router = useRouter()
-  useIsomorphicLayoutEffect(() => {
-    if (!user.email) {
-      router.replace('/login')
-    }
-  }, [router, user.name])
+  const headersList = use(headers())
+  const pathname = headersList.get('x-pathname')
+  const user = use(cookies()).get(USER_ATOM_KEY)
+  if (!user && !pathname?.startsWith('/login')) {
+    redirect('/login')
+  }
   return <>{children}</>
 }
