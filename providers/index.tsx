@@ -1,4 +1,4 @@
-import { AuthCheck } from '@/providers/auth'
+import { AuthCheck } from '@/providers/basicAuth'
 import { QueryProvider } from '@/providers/query'
 import type { FC, ReactNode } from 'react'
 
